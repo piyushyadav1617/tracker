@@ -9,7 +9,8 @@ export const Navbar = ()=>{
     const path = usePathname()
     const links = [
         {label:'Dashboard', link:'/'},
-        {label:'Issues', link:'/issues'}
+        {label:'Issues', link:'/issues'},
+        {label:'+', link:'/issues/new'}
     ]
 
     return (
