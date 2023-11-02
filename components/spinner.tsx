@@ -1,4 +1,4 @@
-import './spinner.css';
+import "./spinner.css";
 type spinnerProps = {
   size: number;
   color: string;

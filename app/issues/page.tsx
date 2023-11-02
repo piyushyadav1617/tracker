@@ -1,17 +1,17 @@
+"use server";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { IssueTable } from "./table";
-
-
-
+import { DataTable } from "./data-table";
+import { columns } from "./column";
+import prisma from "@/prisma/client";
+import delay from "delay";
 export default async function Issues() {
-
+  const data: any = await prisma.issue.findMany();
 
   return (
-      <div className="flex flex-col gap-8 mt-10 mx-5 sm:mx-10 lg:mx-40">
-     
-        <div className="flex flex-col">
-         <div className="flex flex-row justify-between">
+    <div className="flex flex-col gap-8 mt-10 mx-5 sm:mx-10 lg:mx-60">
+      <div className="flex flex-col">
+        <div className="flex flex-row justify-between">
           <div>
             <h2 className="text-2xl font-bold tracking-tight">Welcome back!</h2>
             <p className="text-muted-foreground">
@@ -19,14 +19,13 @@ export default async function Issues() {
             </p>
           </div>
           <Button asChild>
-          <Link href={'/issues/new'}>+</Link>
+            <Link href={"/create-issue"}>+</Link>
           </Button>
-          </div>
         </div>
-        <div>
-         <IssueTable/>
-        </div>
-      
       </div>
-  )
+      <div className="mb-10">
+        <DataTable columns={columns} data={data} />
+      </div>
+    </div>
+  );
 }
