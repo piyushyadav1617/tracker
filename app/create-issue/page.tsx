@@ -29,7 +29,7 @@ export default function NewIssue() {
     try {
       const response = await axios.post("/api/issues", data);
       if (response.status === 201) {
-        router.push("/issues");
+        router.push("/issues/list");
       }
     } catch (error) {
       toast({

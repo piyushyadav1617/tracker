@@ -28,7 +28,7 @@ const IssueDetailPage = async ({ params }: Props) => {
       <Textarea
         readOnly
         value={issue.description}
-        className="h-max resize-none"
+        className="min-h-[160px]"
       />
     </div>
   );
