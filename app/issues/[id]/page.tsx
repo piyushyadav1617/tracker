@@ -25,11 +25,7 @@ const IssueDetailPage = async ({ params }: Props) => {
         <p>{issue.status}</p>
         <p>{issue.createdAt.toDateString()}</p>
       </div>
-      <Textarea
-        readOnly
-        value={issue.description}
-        className="min-h-[160px]"
-      />
+      <Textarea readOnly value={issue.description} className="min-h-[160px]" />
     </div>
   );
 };
