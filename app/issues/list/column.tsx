@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { CheckCircle2, type LucideIcon, Circle, Clock } from "lucide-react";
+import Link from "next/link";
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export enum Status {
@@ -120,7 +121,8 @@ export const columns: ColumnDef<Issue>[] = [
               Copy ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View Details</DropdownMenuItem>
+            <Link href={`/issues/${issue.id}`}><DropdownMenuItem>View Details
+               </DropdownMenuItem></Link>
           </DropdownMenuContent>
         </DropdownMenu>
       );

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { DataTable } from "./data-table";
 import { columns } from "./column";
 import prisma from "@/prisma/client";
-import delay from "delay";
 export default async function Issues() {
   const data: any = await prisma.issue.findMany();
 

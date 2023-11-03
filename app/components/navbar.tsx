@@ -9,7 +9,7 @@ export const Navbar = () => {
   const path = usePathname();
   const links = [
     { label: "Dashboard", link: "/" },
-    { label: "Issues", link: "/issues" },
+    { label: "Issues", link: "/issues/list" },
     { label: "+", link: "/create-issue" },
   ];
 
