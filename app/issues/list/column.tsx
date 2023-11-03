@@ -121,8 +121,9 @@ export const columns: ColumnDef<Issue>[] = [
               Copy ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <Link href={`/issues/${issue.id}`}><DropdownMenuItem>View Details
-               </DropdownMenuItem></Link>
+            <Link href={`/issues/${issue.id}`}>
+              <DropdownMenuItem>View Details</DropdownMenuItem>
+            </Link>
           </DropdownMenuContent>
         </DropdownMenu>
       );

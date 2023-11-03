@@ -27,25 +27,39 @@ export default function IssuesLoading() {
         </div>
       </div>
       <div className="mb-10">
-        
         <div className="rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead><Skeleton className="h-6"/></TableHead>
-                <TableHead><Skeleton className="h-6"/></TableHead>
-                <TableHead><Skeleton className="h-6"/></TableHead>
-                <TableHead><Skeleton className="h-6"/></TableHead>
+                <TableHead>
+                  <Skeleton className="h-6" />
+                </TableHead>
+                <TableHead>
+                  <Skeleton className="h-6" />
+                </TableHead>
+                <TableHead>
+                  <Skeleton className="h-6" />
+                </TableHead>
+                <TableHead>
+                  <Skeleton className="h-6" />
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {list.map((item) => (
                 <TableRow key={item}>
-                  <TableCell><Skeleton className="h-8"/></TableCell>
-                  <TableCell><Skeleton className="h-8"/></TableCell>
-                  <TableCell><Skeleton className="h-8"/></TableCell>
-                  <TableCell><Skeleton className="h-8"/></TableCell>
-             
+                  <TableCell>
+                    <Skeleton className="h-8" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-8" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-8" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-8" />
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

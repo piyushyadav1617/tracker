@@ -9,8 +9,9 @@ export default function IssueLayout({
 }) {
   return (
     <>
-      
-      <Suspense fallback={<IssuesLoading />}><Issues/></Suspense>
+      <Suspense fallback={<IssuesLoading />}>
+        <Issues />
+      </Suspense>
     </>
   );
 }
