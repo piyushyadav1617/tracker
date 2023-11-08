@@ -19,27 +19,24 @@ const IssueDetailPage = async ({ params }: Props) => {
 
   return (
     <>
-      <div className="flex flex-col gap-6 md:flex-row   mx-4 md:mx-10 lg:mx-40  mt-10 ">
-        <div className="flex flex-col gap-4 flex-1">
-          <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0">
-            {issue.title}
-          </h2>
-          <div className="flex flex-row gap-4 ">
-            <p>{issue.status}</p>
-            <p>{issue.createdAt.toDateString()}</p>
-          </div>
-          <Textarea
-            readOnly
-            value={issue.description}
-            className="min-h-[160px]"
-          />
-        </div>
-        <div>
-          <Button className="w-full md:w-max">
-            <Link href={`/issues/${issue.id}/edit`}>Edit Issue</Link>
-          </Button>
-        </div>
+    <div className="flex flex-col gap-6 md:flex-row   mx-4 md:mx-10 lg:mx-40  mt-10 ">
+     
+    <div className="flex flex-col gap-4 flex-1">
+      <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0">
+        {issue.title}
+      </h2>
+      <div className="flex flex-row gap-4 ">
+        <p>{issue.status}</p>
+        <p>{issue.createdAt.toDateString()}</p>
       </div>
+      <Textarea readOnly value={issue.description} className="min-h-[160px]" />
+    </div>
+    <div >
+        <Button className="w-full md:w-max">
+        <Link href={`/issues/${issue.id}/edit`}>Edit Issue</Link>
+        </Button>
+     </div>
+    </div>
     </>
   );
 };

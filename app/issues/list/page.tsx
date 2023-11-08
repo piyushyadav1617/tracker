@@ -18,7 +18,7 @@ export default async function Issues() {
             </p>
           </div>
           <Button asChild>
-            <Link href={"/create-issue"}>+</Link>
+            <Link href={"/issues/new"}>+</Link>
           </Button>
         </div>
       </div>
