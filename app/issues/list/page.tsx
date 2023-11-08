@@ -4,7 +4,7 @@ import Link from "next/link";
 import { DataTable } from "./data-table";
 import { columns } from "./column";
 import prisma from "@/prisma/client";
-export default async function Issues() {
+async function Issues() {
   const data: any = await prisma.issue.findMany();
 
   return (
@@ -28,3 +28,6 @@ export default async function Issues() {
     </div>
   );
 }
+
+export const dynamic = 'force-dynamic';
+export default Issues;
