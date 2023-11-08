@@ -1,4 +1,3 @@
-"use server";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { DataTable } from "./data-table";
@@ -28,6 +27,5 @@ async function Issues() {
     </div>
   );
 }
-
-export const dynamic = 'force-dynamic';
 export default Issues;
+export const dynamic = 'force-dynamic';
