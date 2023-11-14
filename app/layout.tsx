@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "./_components/navbar";
 import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/toaster";
+import AuthProvider from "./auth/provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,17 +21,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
-          <Separator />
-          <Toaster />
-          <main className="h-screen">{children}</main>
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navbar />
+            <Separator />
+            <Toaster />
+            <main className="h-screen">{children}</main>
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );
