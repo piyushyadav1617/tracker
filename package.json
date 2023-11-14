@@ -31,6 +31,7 @@
     "easymde": "^2.18.0",
     "lucide-react": "^0.291.0",
     "next": "14.0.1",
+    "next-auth": "^4.24.5",
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
