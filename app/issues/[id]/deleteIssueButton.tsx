@@ -1,5 +1,5 @@
-'use client'
-import {useState} from 'react'
+"use client";
+import { useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,28 +10,27 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import { Button } from "@/components/ui/button"
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import Spinner from "@/components/spinner";
-function DeleteIssueButton ({issueId}:{issueId:number}) {
-  const router = useRouter()
+function DeleteIssueButton({ issueId }: { issueId: number }) {
+  const router = useRouter();
   const { toast } = useToast();
 
-  const [isDeleting, setIsDeleting] = useState(false) 
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const deleteHandler = async () => {
-    setIsDeleting(true)
+    setIsDeleting(true);
     try {
-      await axios.delete('/api/issues/' + issueId);
-      router.push('/issues/list');
+      await axios.delete("/api/issues/" + issueId);
+      router.push("/issues/list");
       router.refresh();
-    setIsDeleting(false)
-      
+      setIsDeleting(false);
     } catch (error) {
-      setIsDeleting(false)
+      setIsDeleting(false);
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
@@ -39,18 +38,13 @@ function DeleteIssueButton ({issueId}:{issueId:number}) {
       });
       return;
     }
-   
-  }
+  };
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant={'destructive'}>
-          {isDeleting?
-          <Spinner size={15} color="white" />
-          :
-          "Delete Issue"
-        }    
-          </Button>
+        <Button variant={"destructive"}>
+          {isDeleting ? <Spinner size={15} color="white" /> : "Delete Issue"}
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -62,10 +56,10 @@ function DeleteIssueButton ({issueId}:{issueId:number}) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={deleteHandler} >Confirm</AlertDialogAction>
+          <AlertDialogAction onClick={deleteHandler}>Confirm</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  )
+  );
 }
-export default DeleteIssueButton
+export default DeleteIssueButton;

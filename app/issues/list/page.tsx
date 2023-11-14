@@ -28,4 +28,4 @@ async function Issues() {
   );
 }
 export default Issues;
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";

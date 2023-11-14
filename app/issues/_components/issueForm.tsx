@@ -17,9 +17,9 @@ import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type IssueForm, issueSchema } from "@/zod/validationSchema";
 import Spinner from "@/components/spinner";
-import {  Issue } from '@prisma/client';
+import { Issue } from "@prisma/client";
 
-export default function IssueForm({issue}:{issue?:Issue}) {
+export default function IssueForm({ issue }: { issue?: Issue }) {
   const router = useRouter();
   const { toast } = useToast();
   const issueFormResolver = zodResolver(issueSchema);
@@ -28,10 +28,10 @@ export default function IssueForm({issue}:{issue?:Issue}) {
   });
   const create = async (data: IssueForm) => {
     try {
-      if (issue) await axios.patch('/api/issues/' + issue.id, data);
-      else await axios.post('/api/issues', data);
-       router.push("/issues/list");
-       router.refresh(); 
+      if (issue) await axios.patch("/api/issues/" + issue.id, data);
+      else await axios.post("/api/issues", data);
+      router.push("/issues/list");
+      router.refresh();
     } catch (error) {
       toast({
         variant: "destructive",
@@ -80,15 +80,16 @@ export default function IssueForm({issue}:{issue?:Issue}) {
         >
           {form.formState.isSubmitting ? (
             <Spinner size={15} color="white" />
+          ) : issue ? (
+            "Update Issue"
           ) : (
-            issue ? 'Update Issue' : 'Submit New Issue'
+            "Submit New Issue"
           )}
         </Button>
       </form>
     </Form>
   );
 }
-
 
 // {issue ? 'Update Issue' : 'Submit New Issue'}{' '}
 // {isSubmitting && <Spinner />}
