@@ -14,7 +14,7 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="flex gap-6 h-14  px-5 items-center  justify-between sm:justify-around">
+    <nav className="flex gap-6 h-14  mx-5 items-center  justify-between  sm:mx-10 lg:mx-60">
       <ul className="flex gap-6">
         {links.map((item) => {
           return (

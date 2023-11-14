@@ -22,7 +22,7 @@ const Spinner = ({ size, color, opacity }: spinnerProps) => {
         cy="25"
         r="20"
         fill="none"
-        stroke-width="5"
+        strokeWidth="5"
       ></circle>
     </svg>
   );

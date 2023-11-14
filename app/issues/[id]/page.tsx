@@ -4,6 +4,8 @@ import React from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { FileEdit } from "lucide-react";
+import DeleteIssueButton from "./deleteIssueButton";
 interface Props {
   params: { id: string };
 }
@@ -19,7 +21,7 @@ const IssueDetailPage = async ({ params }: Props) => {
 
   return (
     <>
-    <div className="flex flex-col gap-6 md:flex-row   mx-4 md:mx-10 lg:mx-40  mt-10 ">
+    <div className="flex flex-col gap-6 md:flex-row   mx-5  sm:mx-10 lg:mx-60  mt-10 ">
      
     <div className="flex flex-col gap-4 flex-1">
       <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0">
@@ -29,12 +31,16 @@ const IssueDetailPage = async ({ params }: Props) => {
         <p>{issue.status}</p>
         <p>{issue.createdAt.toDateString()}</p>
       </div>
-      <Textarea readOnly value={issue.description} className="min-h-[160px]" />
+      <Textarea readOnly value={issue.description}  className="min-h-[160px] border-2 focus-visible:ring-0 focus-visible:ring-offset-0" />
     </div>
-    <div >
-        <Button className="w-full md:w-max">
-        <Link href={`/issues/${issue.id}/edit`}>Edit Issue</Link>
+    <div className="flex flex-col gap-4" >
+        <Button className="w-full md:w-40 ">
+        <Link href={`/issues/${issue.id}/edit`} className="w-full flex flex-row gap-2 justify-center items-center">
+        <FileEdit/>   
+        Edit Issue
+        </Link>
         </Button>
+      <DeleteIssueButton issueId={issue.id} />
      </div>
     </div>
     </>
