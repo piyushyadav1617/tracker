@@ -19,10 +19,11 @@ import { useSession } from "next-auth/react";
   
   export function UserNav() {
   const { status, data: session } = useSession();
-
-        
-    if(status === 'authenticated') {
-     return (
+    
+    if(status === "loading") return null;
+    if(status === 'unauthenticated')  return <Link href="/api/auth/signin">Login</Link> 
+  
+    return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="relative h-8 w-8 rounded-full">
@@ -45,11 +46,9 @@ import { useSession } from "next-auth/react";
            <Link href="/api/auth/signout" className="w-full">Log out</Link>         
           </DropdownMenuItem>
         </DropdownMenuContent>
-      </DropdownMenu>)
-      }else{
-        return <Link href="/api/auth/signin">Login</Link>
-            
-      }
-    }
+      </DropdownMenu>
+      )
+
+  }
 
   
