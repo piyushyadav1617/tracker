@@ -22,7 +22,7 @@ import { useSession } from "next-auth/react";
   const { status, data: session } = useSession();
     
     if(status === "loading") return <Skeleton className="h-8 w-8 rounded-full"/>;
-    if(status === 'unauthenticated')  return <Link href="/api/auth/signin">Login</Link> 
+    if(status === 'unauthenticated')  return <Link className="h-8 w-8 flex items-center" href="/api/auth/signin">Login</Link> 
   
     return (
       <DropdownMenu>
