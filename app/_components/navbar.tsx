@@ -2,14 +2,13 @@
 import Link from "next/link";
 import React from "react";
 import { ModeToggle } from "./modeToggle";
-import { Button } from "@/components/ui/button";
+
 import { usePathname } from "next/navigation";
 
-import { useSession } from "next-auth/react";
+import { UserNav } from "./user-nav";
 
 export const Navbar = () => {
   const path = usePathname();
-  const { status, data: session } = useSession();
   const links = [
     { label: "Dashboard", link: "/" },
     { label: "Issues", link: "/issues/list" },
@@ -35,13 +34,9 @@ export const Navbar = () => {
         })}
       </ul>
       <div className="flex flex-row gap-4 items-center">
-        {status === "authenticated" && (
-          <Link href="/api/auth/signout">Log out</Link>
-        )}
-        {status === "unauthenticated" && (
-          <Link href="/api/auth/signin">Login</Link>
-        )}
+      
         <ModeToggle />
+        <UserNav/>
       </div>
     </nav>
   );
