@@ -13,6 +13,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
+  import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
 
 import { useSession } from "next-auth/react";
@@ -20,7 +21,7 @@ import { useSession } from "next-auth/react";
   export function UserNav() {
   const { status, data: session } = useSession();
     
-    if(status === "loading") return null;
+    if(status === "loading") return <Skeleton className="h-8 w-8 rounded-full"/>;
     if(status === 'unauthenticated')  return <Link href="/api/auth/signin">Login</Link> 
   
     return (
