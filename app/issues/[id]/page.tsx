@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { FileEdit } from "lucide-react";
 import DeleteIssueButton from "./deleteIssueButton";
+import { AssigneeSelect } from "./assigneeSelect";
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
 interface Props {
@@ -42,7 +43,8 @@ const IssueDetailPage = async ({ params }: Props) => {
         </div>
         {session && (
           <div className="flex flex-col gap-4">
-            <Button className="w-full md:w-40 ">
+            <AssigneeSelect />
+            <Button className="w-full ">
               <Link
                 href={`/issues/${issue.id}/edit`}
                 className="w-full flex flex-row gap-2 justify-center items-center"
