@@ -6,11 +6,15 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { FileEdit } from "lucide-react";
 import DeleteIssueButton from "./deleteIssueButton";
+import { getServerSession } from "next-auth";
+import authOptions from "@/app/auth/authOptions";
 interface Props {
   params: { id: string };
 }
 
 const IssueDetailPage = async ({ params }: Props) => {
+  const session = await getServerSession(authOptions);
+
   const issue = await prisma.issue.findUnique({
     where: { id: parseInt(params.id) },
   });
@@ -36,18 +40,20 @@ const IssueDetailPage = async ({ params }: Props) => {
             className="min-h-[160px] border-2 focus-visible:ring-0 focus-visible:ring-offset-0"
           />
         </div>
-        <div className="flex flex-col gap-4">
-          <Button className="w-full md:w-40 ">
-            <Link
-              href={`/issues/${issue.id}/edit`}
-              className="w-full flex flex-row gap-2 justify-center items-center"
-            >
-              <FileEdit />
-              Edit Issue
-            </Link>
-          </Button>
-          <DeleteIssueButton issueId={issue.id} />
-        </div>
+        {session && (
+          <div className="flex flex-col gap-4">
+            <Button className="w-full md:w-40 ">
+              <Link
+                href={`/issues/${issue.id}/edit`}
+                className="w-full flex flex-row gap-2 justify-center items-center"
+              >
+                <FileEdit />
+                Edit Issue
+              </Link>
+            </Button>
+            <DeleteIssueButton issueId={issue.id} />
+          </div>
+        )}
       </div>
     </>
   );

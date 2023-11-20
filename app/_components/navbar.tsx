@@ -34,9 +34,8 @@ export const Navbar = () => {
         })}
       </ul>
       <div className="flex flex-row gap-4 items-center">
-      
         <ModeToggle />
-        <UserNav/>
+        <UserNav />
       </div>
     </nav>
   );
