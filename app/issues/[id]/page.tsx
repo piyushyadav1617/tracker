@@ -43,7 +43,7 @@ const IssueDetailPage = async ({ params }: Props) => {
         </div>
         {session && (
           <div className="flex flex-col gap-4">
-            <AssigneeSelect />
+            <AssigneeSelect issue={issue}/>
             <Button className="w-full ">
               <Link
                 href={`/issues/${issue.id}/edit`}

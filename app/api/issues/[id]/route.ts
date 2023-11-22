@@ -36,6 +36,11 @@ export async function PATCH(
     data: {
       title: title,
       description: description,
+      assignedToUser:{
+        connect:{
+          id:assignedToUserId
+        }
+      }
     },
   });
 

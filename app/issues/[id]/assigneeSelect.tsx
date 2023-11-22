@@ -8,12 +8,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { User } from "@prisma/client";
+import { User, Issue } from "@prisma/client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useQuery } from '@tanstack/react-query';
 import { Skeleton } from "@/components/ui/skeleton";
-export function AssigneeSelect() {
+export function AssigneeSelect({issue}:{issue:Issue}) {
 
 
   const { data: users, isError,error, isPending, isSuccess} = useQuery<User[]>({
@@ -29,9 +29,14 @@ export function AssigneeSelect() {
     console.log(error) 
     return null
   };
+  const assignUser = (userId:string) =>{
+    axios.patch("/api/issues/" + issue.id, {
+      assignedToUserId: userId || null,
+    });
+  }
 
   if(isSuccess) return (
-    <Select>
+    <Select defaultValue={issue.assignedToUserId || undefined} onValueChange={(userId)=>assignUser(userId)}>
       <SelectTrigger className="w-full md:w-[200px]">
         <SelectValue placeholder="Assign..." />
       </SelectTrigger>
