@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "./_components/navbar";
 import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/toaster";
+import QueryClientProvider from "./queryClientProvider";
 import AuthProvider from "./auth/provider";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
   title: "Tracker",
   description: "Track issues",
 };
+
 
 export default function RootLayout({
   children,
@@ -21,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <QueryClientProvider>
         <AuthProvider>
           <ThemeProvider
             attribute="class"
@@ -34,6 +37,7 @@ export default function RootLayout({
             <main>{children}</main>
           </ThemeProvider>
         </AuthProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );
