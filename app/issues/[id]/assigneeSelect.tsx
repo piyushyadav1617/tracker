@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select";
 import { User, Issue } from "@prisma/client";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/components/ui/use-toast";

@@ -5,7 +5,11 @@ export const issueSchema = z.object({
 });
 
 export const patchIssueSchema = z.object({
-  title: z.string().min(1, "title required").max(255, "title too long").optional(),
+  title: z
+    .string()
+    .min(1, "title required")
+    .max(255, "title too long")
+    .optional(),
   description: z.string().min(1, "description required").max(65535).optional(),
   assignedToUserId: z
     .string()
@@ -14,6 +18,5 @@ export const patchIssueSchema = z.object({
     .optional()
     .nullable(),
 });
-
 
 export type IssueForm = z.infer<typeof issueSchema>;

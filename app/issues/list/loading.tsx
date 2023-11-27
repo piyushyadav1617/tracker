@@ -10,9 +10,9 @@ import {
 } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
 export default function IssuesLoading() {
-  const list = [1, 2, 3, 4, 5, 6];
+  const list = [1, 2, 3, 4];
   return (
-    <div className="flex flex-col gap-8 mt-10 mx-5 sm:mx-10 lg:mx-60">
+    <div className="flex flex-col gap-8">
       <div className="flex flex-col">
         <div className="flex flex-row justify-between">
           <div>

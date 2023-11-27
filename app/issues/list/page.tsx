@@ -7,7 +7,7 @@ async function Issues() {
   const data: any = await prisma.issue.findMany();
 
   return (
-    <div className="flex flex-col gap-8 mt-10 mx-5 sm:mx-10 lg:mx-60">
+    <div className="flex flex-col gap-8">
       <div className="flex flex-col">
         <div className="flex flex-row justify-between">
           <div>

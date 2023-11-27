@@ -14,6 +14,15 @@ import {
 } from "@tanstack/react-table";
 
 import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   Table,
   TableBody,
   TableCell,
@@ -29,7 +38,6 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-// import {  FilterByStatus } from "./filterByStatus"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -65,21 +73,43 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex items-center py-4">
-        <div className="flex flex-row gap-2">
-          <Input
-            placeholder="Filter Issues..."
-            value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
-            onChange={(event) =>
-              table.getColumn("title")?.setFilterValue(event.target.value)
-            }
-            className="max-w-sm"
-          />
-        </div>
-
+      <div className="grid md:grid-cols-3 gap-4 my-4">
+        <Input
+          placeholder="filter issues by title"
+          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("title")?.setFilterValue(event.target.value)
+          }
+          className="col-span-3 md:col-span-1"
+        />
+        <Select
+          defaultValue="All"
+          onValueChange={(value) => {
+            if (
+              value === "OPEN" ||
+              value === "CLOSED" ||
+              value === "IN_PROGRESS"
+            )
+              table.getColumn("status")?.setFilterValue(value);
+            else table.getColumn("status")?.setFilterValue(null);
+          }}
+        >
+          <SelectTrigger className="col-span-2 md:col-span-1 md:w-60">
+            <SelectValue placeholder="All" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Status</SelectLabel>
+              <SelectItem value="All">All</SelectItem>
+              <SelectItem value="OPEN">Open</SelectItem>
+              <SelectItem value="IN_PROGRESS">In progress</SelectItem>
+              <SelectItem value="CLOSED">Closed</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="outline" className="md:place-self-end">
               Columns
             </Button>
           </DropdownMenuTrigger>

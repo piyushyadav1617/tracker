@@ -45,7 +45,7 @@ export default function IssueForm({ issue }: { issue?: Issue }) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(create)}
-        className="space-y-6 w-[90vw] sm:w-[450px] mx-auto mt-10 sm:m-10"
+        className="space-y-6 w-[90vw] sm:w-[450px]"
       >
         <FormField
           control={form.control}

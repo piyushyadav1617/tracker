@@ -26,7 +26,7 @@ const IssueDetailPage = async ({ params }: Props) => {
 
   return (
     <>
-      <div className="flex flex-col gap-6 md:flex-row   mx-5  sm:mx-10 lg:mx-60  mt-10 ">
+      <div className="flex flex-col gap-6 md:flex-row">
         <div className="flex flex-col gap-4 flex-1">
           <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0">
             {issue.title}
@@ -43,7 +43,7 @@ const IssueDetailPage = async ({ params }: Props) => {
         </div>
         {session && (
           <div className="flex flex-col gap-4">
-            <AssigneeSelect issue={issue}/>
+            <AssigneeSelect issue={issue} />
             <Button className="w-full ">
               <Link
                 href={`/issues/${issue.id}/edit`}

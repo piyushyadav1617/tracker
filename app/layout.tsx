@@ -14,7 +14,6 @@ export const metadata: Metadata = {
   description: "Track issues",
 };
 
-
 export default function RootLayout({
   children,
 }: {
@@ -24,19 +23,21 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <QueryClientProvider>
-        <AuthProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Navbar />
-            <Separator />
-            <Toaster />
-            <main>{children}</main>
-          </ThemeProvider>
-        </AuthProvider>
+          <AuthProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Navbar />
+              <Separator />
+              <Toaster />
+              <main className="mx-5 sm:mx-10 md:mx-auto mt-10  md:w-[680px] lg:w-[990px] 2xl:w-[1200px] ">
+                {children}
+              </main>
+            </ThemeProvider>
+          </AuthProvider>
         </QueryClientProvider>
       </body>
     </html>
