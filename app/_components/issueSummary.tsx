@@ -16,7 +16,7 @@ const IssueSummary = ({ open, inProgress, closed }: Props) => {
   }[] = [
     { label: "Open Issues", value: open, status: "OPEN" },
     {
-      label: "In-progress Issues",
+      label: "In progress",
       value: inProgress,
       status: "IN_PROGRESS",
     },
@@ -28,7 +28,7 @@ const IssueSummary = ({ open, inProgress, closed }: Props) => {
         return (
           <div
             key={container.label}
-            className="flex flex-col border border-border justify-between rounded-md p-4 w-28 md:w-36"
+            className="flex flex-col border border-border justify-between  rounded-md p-4 h-24 w-28 md:w-36"
           >
             <Link href={"#"} className="text-sm sm:text-md">{container.label}</Link>
 
