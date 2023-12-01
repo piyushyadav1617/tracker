@@ -60,7 +60,7 @@ export const columns: ColumnDef<Issue>[] = [
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="-ml-4"
+          className="-ml-2"
         >
           Title
           <ArrowUpDown className="ml-2 h-4 w-4" />

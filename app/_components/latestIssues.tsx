@@ -14,12 +14,12 @@ import { AvatarUser } from './avatar';
         },
       });
     return (
-      <div className='p-5 border rounded-lg flex-1'>
+      <div className='p-5 border border-border rounded-lg flex-1'>
         <h2 className='text-2xl font-semibold mb-4'>Latest Issues</h2>
         <div>
             {issues.map((issue)=>{
                 return(
-                    <div className='flex flex-row justify-between items-center border-b  gap-2 py-2'>
+                    <div className='flex flex-row justify-between items-center border-b border-border gap-2 py-2'>
                       <div className='flex flex-col'>
                       <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
                       <div className='flex flex-row items-center'>

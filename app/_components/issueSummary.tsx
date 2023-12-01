@@ -1,23 +1,4 @@
 import * as React from "react";
-
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Status } from "@prisma/client";
 import Link from "next/link";
 
@@ -47,9 +28,9 @@ const IssueSummary = ({ open, inProgress, closed }: Props) => {
         return (
           <div
             key={container.label}
-            className="flex flex-col border justify-between rounded-md p-4 w-28 md:w-36"
+            className="flex flex-col border border-border justify-between rounded-md p-4 w-28 md:w-36"
           >
-            <Link href={"#"}>{container.label}</Link>
+            <Link href={"#"} className="text-sm sm:text-md">{container.label}</Link>
 
             <h2 className="font-semibold">{container.value}</h2>
           </div>

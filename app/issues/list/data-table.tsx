@@ -98,7 +98,7 @@ export function DataTable<TData, TValue>({
           <SelectTrigger className="col-span-2 md:col-span-1 md:w-60">
             <SelectValue placeholder="All" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="border-border">
             <SelectGroup>
               <SelectLabel>Status</SelectLabel>
               <SelectItem value="All">All</SelectItem>
@@ -115,7 +115,7 @@ export function DataTable<TData, TValue>({
               Columns
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className="border-border">
             {table
               .getAllColumns()
               .filter((column) => column.getCanHide())
@@ -136,14 +136,14 @@ export function DataTable<TData, TValue>({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md overflow-hidden border border-border">
         <Table>
-          <TableHeader>
+          <TableHeader className="rounded-md ">
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow key={headerGroup.id} className="border-border bg-border rounded-md hover:bg-border">
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} >
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -156,12 +156,14 @@ export function DataTable<TData, TValue>({
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody >
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
+
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  className="border-border"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -174,7 +176,7 @@ export function DataTable<TData, TValue>({
                 </TableRow>
               ))
             ) : (
-              <TableRow>
+              <TableRow className="border-border">
                 <TableCell
                   colSpan={columns.length}
                   className="h-24 text-center"

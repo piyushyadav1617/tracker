@@ -16,7 +16,7 @@ export default async function Home() {
     <div className="flex flex-col gap-4 lg:flex-row">
       <div className="flex-1 flex flex-col  gap-4 ">
         <IssueSummary open={open} inProgress={inProgress} closed={closed} />
-        <div className="border p-10"></div>
+        <div className="border border-border p-10"></div>
       </div>
       <LatestIssues />
     </div>
