@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/toaster";
 import QueryClientProvider from "./queryClientProvider";
 import AuthProvider from "./auth/provider";
+import { Container } from "postcss";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -33,7 +34,7 @@ export default function RootLayout({
               <Navbar />
               <Separator />
               <Toaster />
-              <main className="mx-5 sm:mx-10 md:mx-auto mt-10  md:w-[680px] lg:w-[990px] 2xl:w-[1200px] ">
+              <main className="mx-5 sm:mx-10 md:mx-auto mt-10  md:w-[700px] lg:w-[990px] 2xl:w-[1200px] ">
                 {children}
               </main>
             </ThemeProvider>

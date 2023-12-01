@@ -50,7 +50,7 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    [],
+    [], 
   );
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
@@ -74,6 +74,7 @@ export function DataTable<TData, TValue>({
   return (
     <div>
       <div className="grid md:grid-cols-3 gap-4 my-4">
+
         <Input
           placeholder="filter issues by title"
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
@@ -107,6 +108,7 @@ export function DataTable<TData, TValue>({
             </SelectGroup>
           </SelectContent>
         </Select>
+     
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="md:place-self-end">

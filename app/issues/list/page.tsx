@@ -3,8 +3,13 @@ import Link from "next/link";
 import { DataTable } from "./data-table";
 import { columns } from "./column";
 import prisma from "@/prisma/client";
+import { Status } from "@prisma/client";
+
+
 async function Issues() {
+
   const data: any = await prisma.issue.findMany();
+
 
   return (
     <div className="flex flex-col gap-8">

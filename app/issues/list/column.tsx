@@ -29,12 +29,12 @@ export type Issue = {
   createdAt: Date;
   updatedAt: Date;
 };
-type status = {
+export type status = {
   value: string;
   label: string;
   icon: LucideIcon;
 };
-const statuses: status[] = [
+export const statuses: status[] = [
   {
     value: "OPEN",
     label: "Open",
