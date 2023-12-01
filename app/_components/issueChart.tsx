@@ -28,7 +28,7 @@ interface Props {
           <YAxis />
           <Bar
             dataKey="value"
-            barSize={60}
+            barSize={50}
             style={{ fill: 'hsl(20.5 90.2% 48.2%)' }}
           />
         </BarChart>

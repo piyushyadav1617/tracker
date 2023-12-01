@@ -19,7 +19,7 @@ import { AvatarUser } from './avatar';
         <div>
             {issues.map((issue)=>{
                 return(
-                    <div className='flex flex-row justify-between items-center border-b border-border gap-2 py-2'>
+                    <div key={issue.id} className='flex flex-row justify-between items-center border-b border-border gap-2 py-2'>
                       <div className='flex flex-col'>
                       <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
                       <div className='flex flex-row items-center'>
