@@ -3,7 +3,7 @@ import Link from "next/link";
 import { DataTable } from "./data-table";
 import { columns } from "./column";
 import prisma from "@/prisma/client";
-import { Status } from "@prisma/client";
+import { Metadata } from "next";
 
 
 async function Issues() {
@@ -32,5 +32,9 @@ async function Issues() {
     </div>
   );
 }
+export const metadata: Metadata = {
+  title: 'Issue Tracker - Issue List',
+  description: 'View all project issues'
+};
 export default Issues;
 export const dynamic = "force-dynamic";
