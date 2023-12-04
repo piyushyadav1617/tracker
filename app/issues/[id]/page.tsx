@@ -1,6 +1,6 @@
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
-import React from "react";
+import React, { cache } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -9,16 +9,16 @@ import DeleteIssueButton from "./deleteIssueButton";
 import { AssigneeSelect } from "./assigneeSelect";
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
+
 interface Props {
   params: { id: string };
 }
+const fetchIssue = cache((issueId:number) => prisma.issue.findUnique({where: { id: issueId }}));
 
 const IssueDetailPage = async ({ params }: Props) => {
   const session = await getServerSession(authOptions);
 
-  const issue = await prisma.issue.findUnique({
-    where: { id: parseInt(params.id) },
-  });
+  const issue = await fetchIssue(parseInt(params.id));
 
   if (!issue) {
     notFound();
@@ -61,7 +61,7 @@ const IssueDetailPage = async ({ params }: Props) => {
   );
 };
 export async function generateMetadata({ params }: Props) {
-  const issue = await prisma.issue.findUnique({ where: { id: parseInt(params.id) }});
+  const issue = await fetchIssue(parseInt(params.id));
 
   return {
     title: issue?.title,
