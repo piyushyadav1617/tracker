@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -41,6 +40,7 @@ export function UserNav() {
           <div className="flex flex-col space-y-1">
             <p className="text-xs leading-none text-muted-foreground">
               {session?.user!.email }
+
             </p>
           </div>
         </DropdownMenuLabel>
