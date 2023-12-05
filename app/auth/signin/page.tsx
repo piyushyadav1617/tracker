@@ -14,6 +14,9 @@ import { Label } from "@/components/ui/label";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import Spinner from "@/components/spinner";
+import Image from "next/image";
+import { GoogleSvg } from "../socialIcons";
+
 export default function Signin() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
@@ -29,18 +32,23 @@ export default function Signin() {
 
   return (
     <div className="w-full h-[60vh] flex items-center justify-center">
-      <Card className="w-[95vw] sm:w-[350px] sm:px-4 border-border">
+      <Card className="w-[95vw] sm:w-[350px] sm:p-4 border-border shadow-xl shadow-border ">
         <CardHeader>
           <CardTitle>Sign in</CardTitle>
-          <CardDescription>to your account</CardDescription>
+          <CardDescription>to your account with</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-2">
-            <Button className="w-full" disabled={loading} onClick={googleLogin}>
-              {loading ? <Spinner size={15} color="white" /> : "Google"}
+            <Button
+              className="w-full flex justify-between  text-slate-600 bg-slate-200 hover:bg-slate-300"
+              disabled={loading}
+              onClick={googleLogin}
+            >
+              {loading ? <Spinner size={15} color="black" /> : "Google"}
+              <GoogleSvg />
             </Button>
           </div>
-          <div className="relative my-4">
+          <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t border-border" />
             </div>
@@ -54,7 +62,7 @@ export default function Signin() {
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-2">
               <Label htmlFor="username">Username</Label>
-              <Input id="username" type="text" placeholder="xyz@123" />
+              <Input id="username" type="text" placeholder="xyz" />
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="password">Password</Label>

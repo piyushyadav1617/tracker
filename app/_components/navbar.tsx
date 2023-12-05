@@ -10,7 +10,7 @@ import { UserNav } from "./user-nav";
 export const Navbar = () => {
   const path = usePathname();
   const links = [
-    { label: "Dashboard", link: "/" },
+    { label: "Dashboard", link: "/dashboard" },
     { label: "Issues", link: "/issues/list" },
     { label: "+", link: "/issues/new" },
   ];
