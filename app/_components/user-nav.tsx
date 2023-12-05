@@ -31,7 +31,7 @@ export function UserNav() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={session?.user!.image!} alt="@shadcn" />
+            <AvatarImage src={session?.user!.image!} alt="user" />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
         </Button>
@@ -40,7 +40,7 @@ export function UserNav() {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-xs leading-none text-muted-foreground">
-              {session?.user!.email}
+              {session?.user!.email }
             </p>
           </div>
         </DropdownMenuLabel>
