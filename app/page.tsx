@@ -5,7 +5,7 @@ export default async function Home() {
 
   return (
 <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
-      <div className="container">
+      <div className="container px-0 m-0">
         <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
           {/* <img
             alt="Hero"
