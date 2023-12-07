@@ -18,16 +18,16 @@ export default async function Dashboard() {
       <div className="flex-1 flex flex-col  gap-4 ">
         <IssueSummary open={open} inProgress={inProgress} closed={closed} />
         <div className="border border-border rounded-lg p-2 sm:p-5">
-        <IssueChart open={open} inProgress={inProgress} closed={closed} />
+          <IssueChart open={open} inProgress={inProgress} closed={closed} />
         </div>
       </div>
       <LatestIssues />
     </div>
   );
 }
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: 'Issue Tracker - Dashboard',
-  description: 'View a summary of project issues'
+  title: "Issue Tracker - Dashboard",
+  description: "View a summary of project issues",
 };

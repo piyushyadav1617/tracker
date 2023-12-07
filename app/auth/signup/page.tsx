@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signIn } from "next-auth/react";
-import {useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Spinner from "@/components/spinner";
 import {
   Form,
@@ -37,39 +37,36 @@ export default function Signup() {
   const searchParams = useSearchParams();
 
   const { toast } = useToast();
-const router = useRouter()
-  
+  const router = useRouter();
+
   const issueFormResolver = zodResolver(userSignupSchema);
   const form = useForm<SignupCredentials>({
     resolver: issueFormResolver,
   });
   const create = async (data: SignupCredentials) => {
     try {
-    const res = await axios.post('/api/user',data)
+      const res = await axios.post("/api/user", data);
 
-    if(res.status===200){
-     return router.push('/api/auth/signin')
-    }
-      
-    } catch (error:any) {
-      if(error.response){
-        if(error.response.status===409){
+      if (res.status === 200) {
+        return router.push("/api/auth/signin");
+      }
+    } catch (error: any) {
+      if (error.response) {
+        if (error.response.status === 409) {
           return toast({
             variant: "destructive",
             title: "Uh oh! Something went wrong.",
-            description: "Username already exists"
-          })
+            description: "Username already exists",
+          });
         }
       }
       return toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: error.message
-      })
+        description: error.message,
+      });
     }
   };
-
-
 
   return (
     <div className="w-full h-[60vh] my-20 flex items-center justify-center">
@@ -79,13 +76,8 @@ const router = useRouter()
           <CardDescription>Create account with credentials</CardDescription>
         </CardHeader>
         <CardContent>
-       
-
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(create)}
-              className="space-y-4"
-            >
+            <form onSubmit={form.handleSubmit(create)} className="space-y-4">
               <FormField
                 control={form.control}
                 name="username"
@@ -106,20 +98,20 @@ const router = useRouter()
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input placeholder="*******" {...field}  type="password"/>
+                      <Input placeholder="*******" {...field} type="password" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-                 <FormField
+              <FormField
                 control={form.control}
                 name="confirmPassword"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Confirm Password</FormLabel>
                     <FormControl>
-                      <Input placeholder="*******" {...field}  type="password"/>
+                      <Input placeholder="*******" {...field} type="password" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -140,8 +132,15 @@ const router = useRouter()
             </form>
           </Form>
         </CardContent>
-        <CardFooter> <p className="text-sm">Already have an account? <Link className="text-blue-600" href={'/api/auth/signin'}>Sigin</Link></p></CardFooter>
-
+        <CardFooter>
+          {" "}
+          <p className="text-sm">
+            Already have an account?{" "}
+            <Link className="text-blue-600" href={"/api/auth/signin"}>
+              Sigin
+            </Link>
+          </p>
+        </CardFooter>
       </Card>
     </div>
   );

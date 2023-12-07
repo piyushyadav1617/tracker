@@ -30,7 +30,9 @@ const IssueSummary = ({ open, inProgress, closed }: Props) => {
             key={container.label}
             className="flex flex-col border border-border justify-between  rounded-md p-4 h-24 w-28 md:w-36"
           >
-            <Link href={"#"} className="text-sm sm:text-md">{container.label}</Link>
+            <Link href={"#"} className="text-sm sm:text-md">
+              {container.label}
+            </Link>
 
             <h2 className="font-semibold">{container.value}</h2>
           </div>

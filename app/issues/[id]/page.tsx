@@ -13,7 +13,9 @@ import authOptions from "@/app/auth/authOptions";
 interface Props {
   params: { id: string };
 }
-const fetchIssue = cache((issueId:number) => prisma.issue.findUnique({where: { id: issueId }}));
+const fetchIssue = cache((issueId: number) =>
+  prisma.issue.findUnique({ where: { id: issueId } }),
+);
 
 const IssueDetailPage = async ({ params }: Props) => {
   const session = await getServerSession(authOptions);
@@ -65,8 +67,8 @@ export async function generateMetadata({ params }: Props) {
 
   return {
     title: issue?.title,
-    description: 'Details of issue ' + issue?.id
-  }
+    description: "Details of issue " + issue?.id,
+  };
 }
 
 export default IssueDetailPage;

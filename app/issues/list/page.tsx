@@ -5,11 +5,8 @@ import { columns } from "./column";
 import prisma from "@/prisma/client";
 import { Metadata } from "next";
 
-
 async function Issues() {
-
   const data: any = await prisma.issue.findMany();
-
 
   return (
     <div className="flex flex-col gap-8">
@@ -33,8 +30,8 @@ async function Issues() {
   );
 }
 export const metadata: Metadata = {
-  title: 'Issue Tracker - Issue List',
-  description: 'View all project issues'
+  title: "Issue Tracker - Issue List",
+  description: "View all project issues",
 };
 export default Issues;
 export const dynamic = "force-dynamic";

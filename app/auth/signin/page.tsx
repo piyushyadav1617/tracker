@@ -35,7 +35,7 @@ import Link from "next/link";
 export default function Signin() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
-  const error = searchParams.get("error")
+  const error = searchParams.get("error");
   const { toast } = useToast();
 
   const [loading, setLoading] = React.useState(false);
@@ -57,17 +57,16 @@ export default function Signin() {
       callbackUrl: callbackUrl || "http://localhost:3000",
     });
   };
-  React.useEffect(()=>{
-  if(error){
-    toast({
-      variant: "destructive",
-      title: "Uh oh! Something went wrong.",
-      description: "Invalid credentials",
-
-    })
-    console.log(error)
-  }
-  },[error])
+  React.useEffect(() => {
+    if (error) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Invalid credentials",
+      });
+      console.log(error);
+    }
+  }, [error]);
 
   return (
     <div className="w-full h-[60vh] my-20 flex items-center justify-center">
@@ -99,10 +98,7 @@ export default function Signin() {
           </div>
 
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(create)}
-              className="space-y-4"
-            >
+            <form onSubmit={form.handleSubmit(create)} className="space-y-4">
               <FormField
                 control={form.control}
                 name="username"
@@ -123,7 +119,7 @@ export default function Signin() {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input placeholder="*******" {...field}  type="password"/>
+                      <Input placeholder="*******" {...field} type="password" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -144,8 +140,15 @@ export default function Signin() {
             </form>
           </Form>
         </CardContent>
-        <CardFooter> <p className="text-sm">Dont have an account? <Link className="text-blue-600" href={'/auth/signup'}>Signup</Link></p></CardFooter>
-
+        <CardFooter>
+          {" "}
+          <p className="text-sm">
+            Dont have an account?{" "}
+            <Link className="text-blue-600" href={"/auth/signup"}>
+              Signup
+            </Link>
+          </p>
+        </CardFooter>
       </Card>
     </div>
   );

@@ -35,12 +35,15 @@ export function UserNav() {
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 border-border" align="end" forceMount>
+      <DropdownMenuContent
+        className="w-56 border-border"
+        align="end"
+        forceMount
+      >
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-xs leading-none text-muted-foreground">
-              {session?.user!.email }
-
+              {session?.user!.email}
             </p>
           </div>
         </DropdownMenuLabel>
