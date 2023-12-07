@@ -1,10 +1,10 @@
 import prisma from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server"
-import { userCredentialsSchema } from "@/zod/validationSchema";
+import { userSignupSchema} from "@/zod/validationSchema";
 
 export async function POST(request:NextRequest) {
   const body = await request.json();
-  const validation = userCredentialsSchema.safeParse(body);
+  const validation = userSignupSchema.safeParse(body);
   if (!validation.success)
   return NextResponse.json(validation.error.errors, { status: 400 });
 try {
@@ -14,18 +14,7 @@ try {
     }
   })
   if(username){
-    const user = await prisma.user.findUnique({ 
-      where:{
-        username:body.username,
-        password:body.password
-      }
-    })
-    if(user){
-      return NextResponse.json(user, {status:200});
-
-    }else{
-      return NextResponse.json({error:"Invalid credentials"}, {status:403})
-    }
+      return NextResponse.json({error:"username already exists"}, {status:409})
   }else{
     const user = await prisma.user.create({ 
       data:{
@@ -33,17 +22,11 @@ try {
         password:body.password
       }
     })
-    if(user){
-      return NextResponse.json(user, {status:200});
-
-    }else{
-      return NextResponse.json({error:"could not create"}, {status:403})
-    }
-
+   
+    return NextResponse.json(user, {status:200});
   }
 } catch (error:any) {
   NextResponse.json({ error: error.message}, {status:500});
 }
  
-
 }

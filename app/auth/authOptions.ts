@@ -1,4 +1,4 @@
-import { Awaitable, NextAuthOptions, RequestInternal, User } from "next-auth";
+import {  NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import CredentialsProvider from "next-auth/providers/credentials"
@@ -19,7 +19,7 @@ const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password", placeholder: "*******" }
       },
       async authorize(credentials) {
-  
+        console.log(credentials)
         const validation = userCredentialsSchema.safeParse(credentials);
         if (!validation.success)
         return null
@@ -36,6 +36,7 @@ const authOptions: NextAuthOptions = {
           return null
         }
       } catch (error) {
+        console.log(error)
           return null
       }     
       }

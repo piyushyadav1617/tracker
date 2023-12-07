@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+import {useRouter, useSearchParams } from "next/navigation";
 import Spinner from "@/components/spinner";
 import {
   Form,
@@ -25,78 +25,61 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { GoogleSvg } from "../socialIcons";
+
 import {
-  type Credentials,
-  userCredentialsSchema,
+  type SignupCredentials,
+  userSignupSchema,
 } from "@/zod/validationSchema";
 import Link from "next/link";
+import axios, { AxiosError } from "axios";
 
-export default function Signin() {
+export default function Signup() {
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl");
-  const error = searchParams.get("error")
-  const { toast } = useToast();
 
-  const [loading, setLoading] = React.useState(false);
-  const issueFormResolver = zodResolver(userCredentialsSchema);
-  const form = useForm<Credentials>({
+  const { toast } = useToast();
+const router = useRouter()
+  
+  const issueFormResolver = zodResolver(userSignupSchema);
+  const form = useForm<SignupCredentials>({
     resolver: issueFormResolver,
   });
-  const create = async (data: Credentials) => {
-    return signIn("credentials", {
-      ...data,
-      redirect: true,
-      callbackUrl: callbackUrl || "http://localhost:3000",
-    });
-  };
-  const googleLogin = async () => {
-    setLoading(true);
-    return signIn("google", {
-      redirect: true,
-      callbackUrl: callbackUrl || "http://localhost:3000",
-    });
-  };
-  React.useEffect(()=>{
-  if(error){
-    toast({
-      variant: "destructive",
-      title: "Uh oh! Something went wrong.",
-      description: "Invalid credentials",
+  const create = async (data: SignupCredentials) => {
+    try {
+    const res = await axios.post('/api/user',data)
 
-    })
-    console.log(error)
-  }
-  },[error])
+    if(res.status===200){
+     return router.push('/api/auth/signin')
+    }
+      
+    } catch (error:any) {
+      if(error.response){
+        if(error.response.status===409){
+          return toast({
+            variant: "destructive",
+            title: "Uh oh! Something went wrong.",
+            description: "Username already exists"
+          })
+        }
+      }
+      return toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: error.message
+      })
+    }
+  };
+
+
 
   return (
     <div className="w-full h-[60vh] my-20 flex items-center justify-center">
       <Card className="w-[95vw] sm:w-[350px] sm:p-4 border-border shadow-xl shadow-border ">
         <CardHeader>
-          <CardTitle>Sign in</CardTitle>
-          <CardDescription>to your account with</CardDescription>
+          <CardTitle>Sign up</CardTitle>
+          <CardDescription>Create account with credentials</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-2">
-            <Button
-              className="w-full flex justify-between  text-slate-600 bg-slate-200 hover:bg-slate-300"
-              disabled={loading}
-              onClick={googleLogin}
-            >
-              {loading ? <Spinner size={15} color="black" /> : "Google"}
-              <GoogleSvg />
-            </Button>
-          </div>
-          <div className="relative my-6">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-border" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-xs text-muted-foreground">
-                Or continue with
-              </span>
-            </div>
-          </div>
+       
 
           <Form {...form}>
             <form
@@ -129,6 +112,19 @@ export default function Signin() {
                   </FormItem>
                 )}
               />
+                 <FormField
+                control={form.control}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Confirm Password</FormLabel>
+                    <FormControl>
+                      <Input placeholder="*******" {...field}  type="password"/>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <Button
                 type="submit"
@@ -138,13 +134,13 @@ export default function Signin() {
                 {form.formState.isSubmitting ? (
                   <Spinner size={15} color="white" />
                 ) : (
-                  "Signin"
+                  "Signup"
                 )}
               </Button>
             </form>
           </Form>
         </CardContent>
-        <CardFooter> <p className="text-sm">Dont have an account? <Link className="text-blue-600" href={'/auth/signup'}>Signup</Link></p></CardFooter>
+        <CardFooter> <p className="text-sm">Already have an account? <Link className="text-blue-600" href={'/api/auth/signin'}>Sigin</Link></p></CardFooter>
 
       </Card>
     </div>

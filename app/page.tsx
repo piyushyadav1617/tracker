@@ -16,7 +16,7 @@ export default async function Home() {
           /> */}
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl lg:text-5xl xl:text-6xl/none whitespace-nowrap ">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl lg:text-5xl xl:text-6xl/none xl:whitespace-nowrap ">
               Track, Tackle, <span className="text-primary">Triumph</span> 
               </h1>
               <p className="max-w-[600px] text-zinc-500 md:text-xl dark:text-zinc-400">
