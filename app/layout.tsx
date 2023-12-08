@@ -7,7 +7,6 @@ import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/toaster";
 import QueryClientProvider from "./queryClientProvider";
 import AuthProvider from "./auth/provider";
-import { Container } from "postcss";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

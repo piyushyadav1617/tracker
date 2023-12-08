@@ -10,8 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { signIn } from "next-auth/react";
+
 import { useRouter, useSearchParams } from "next/navigation";
 import Spinner from "@/components/spinner";
 import {
@@ -31,7 +30,7 @@ import {
   userSignupSchema,
 } from "@/zod/validationSchema";
 import Link from "next/link";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 export default function Signup() {
   const searchParams = useSearchParams();

@@ -20,9 +20,12 @@ export function UserNav() {
     return <Skeleton className="h-8 w-8 rounded-full" />;
   if (status === "unauthenticated")
     return (
+  <Button  variant={'outline'} >
       <Link className="h-8 w-8 flex items-center" href="/api/auth/signin">
         Login
       </Link>
+  </Button>
+     
     );
 
   return (

@@ -6,7 +6,7 @@ import { ModeToggle } from "./modeToggle";
 import { usePathname } from "next/navigation";
 
 import { UserNav } from "./user-nav";
-
+import { Target } from "lucide-react";
 export const Navbar = () => {
   const path = usePathname();
   const links = [
@@ -17,7 +17,9 @@ export const Navbar = () => {
 
   return (
     <nav className="flex gap-6 h-14 mx-5 sm:mx-10 md:mx-auto  md:w-[700px] lg:w-[990px] 2xl:w-[1200px] items-center justify-between">
-      <ul className="flex gap-6">
+      <ul className="flex gap-6 items-center">
+        <Link href={'/'}><Target className="text-primary/60 hover:text-primary transition-colors" size={30}/></Link>
+        
         {links.map((item) => {
           return (
             <li key={item.link}>

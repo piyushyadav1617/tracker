@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signIn } from "next-auth/react";
+import {  signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import Spinner from "@/components/spinner";
 import {
@@ -25,7 +25,7 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { GoogleSvg } from "../socialIcons";
+import { GoogleSvg,GithubSvg } from "../socialIcons";
 import {
   type Credentials,
   userCredentialsSchema,
@@ -39,6 +39,8 @@ export default function Signin() {
   const { toast } = useToast();
 
   const [loading, setLoading] = React.useState(false);
+  const [loading2, setLoading2] = React.useState(false);
+
   const issueFormResolver = zodResolver(userCredentialsSchema);
   const form = useForm<Credentials>({
     resolver: issueFormResolver,
@@ -50,19 +52,26 @@ export default function Signin() {
       callbackUrl: callbackUrl || "http://localhost:3000",
     });
   };
-  const googleLogin = async () => {
-    setLoading(true);
-    return signIn("google", {
-      redirect: true,
-      callbackUrl: callbackUrl || "http://localhost:3000",
-    });
-  };
+    const googleLogin = async () => {
+      setLoading(true);
+      return signIn("google", {
+        redirect: true,
+        callbackUrl: callbackUrl || "http://localhost:3000",
+      });
+    };
+    const githubLogin = async () => {
+      setLoading2(true);
+      return signIn("github", {
+        redirect: true,
+        callbackUrl: callbackUrl || "http://localhost:3000",
+      });
+    };
   React.useEffect(() => {
     if (error) {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: "Invalid credentials",
+        description: error,
       });
       console.log(error);
     }
@@ -84,6 +93,14 @@ export default function Signin() {
             >
               {loading ? <Spinner size={15} color="black" /> : "Google"}
               <GoogleSvg />
+            </Button>
+            <Button
+              className="w-full flex justify-between  text-slate-600 bg-slate-200 hover:bg-slate-300"
+              disabled={loading}
+              onClick={githubLogin}
+            >
+              {loading2 ? <Spinner size={15} color="black" /> : "Github"}
+              <GithubSvg />
             </Button>
           </div>
           <div className="relative my-6">
