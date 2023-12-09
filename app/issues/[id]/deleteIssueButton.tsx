@@ -46,7 +46,7 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
           {isDeleting ? <Spinner size={15} color="white" /> : "Delete Issue"}
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="border-border">
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>

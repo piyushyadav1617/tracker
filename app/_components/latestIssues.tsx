@@ -13,7 +13,7 @@ async function LatestIssues() {
     },
   });
   return (
-    <div className="p-5 border border-border rounded-lg flex-1">
+    <div className=" p-5 border border-border rounded-lg flex-1">
       <h2 className="text-2xl font-semibold mb-4">Latest Issues</h2>
       <div>
         {issues.map((issue) => {

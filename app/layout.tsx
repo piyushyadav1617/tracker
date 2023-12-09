@@ -31,7 +31,6 @@ export default function RootLayout({
               disableTransitionOnChange
             >
               <Navbar />
-              <Separator />
               <Toaster />
               <main className="mx-5 sm:mx-10 md:mx-auto mt-10  md:w-[700px] lg:w-[990px] 2xl:w-[1200px] ">
                 {children}
