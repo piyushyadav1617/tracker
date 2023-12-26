@@ -136,7 +136,7 @@ export default function Signup() {
           <p className="text-sm">
             Already have an account?{" "}
             <Link className="text-blue-600" href={"/api/auth/signin"}>
-              Sigin
+              Sigin here
             </Link>
           </p>
         </CardFooter>
